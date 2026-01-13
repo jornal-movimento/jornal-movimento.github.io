@@ -17,6 +17,8 @@
             --color-dark: #1F2937;
             --color-text: #4B5563;
             --color-white: #FFFFFF;
+            --color-third: #6B7280;
+            --color-quarter:  #C0392B;
             
             /* Efeitos */
             --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -240,20 +242,20 @@
         }
 
         /* Botão Secundário (Outline) */
-.btn-secondary {
-    background: transparent;
-    color: var(--color-dark); /* Texto escuro para leitura */
-    border: 2px solid #ddd;
-    padding: 10px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.85rem;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Espaço entre ícone e texto */
-}
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-dark); /* Texto escuro para leitura */
+            border: 2px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Espaço entre ícone e texto */
+        }
 
         /* Agenda */
         .agenda-item {
@@ -349,6 +351,67 @@
             border: 1px dashed rgba(255,255,255,0.3);
         }
 
+        /* Container do Dropdown */
+        .edition-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* O Botão (que parece o badge antigo) */
+        .edition-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Lato', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .edition-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* A Lista (Escondida inicialmente) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1001; /* Fica acima de tudo */
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        /* Links dentro da lista */
+        .dropdown-content a {
+            color: var(--color-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: var(--color-primary);
+        }
+
+        /* Mostrar ao passar o mouse (Simples e funcional) */
+        .edition-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
         /* ========== MOBILE QUERIES ========== */
         @media (max-width: 600px) {
             header { padding: 0.8rem 1rem; }
@@ -437,8 +500,14 @@
                 </div>
             </div>
 
-            <div class="header-date">
-                <span>📅</span> Janeiro 2026
+            <div class="edition-dropdown">
+                <button class="edition-btn">
+                    <span>📅</span> Janeiro 2026 ▼
+                </button>
+                <div class="dropdown-content">
+                    <a href="#"><strong>📍 Janeiro 2026</strong></a>
+                    
+                    </div>
             </div>
         </div>
     </header>
@@ -531,7 +600,7 @@
     </article>
 </section>
 
-        <section class="content-block" id="agenda">
+        <section class="content-block" id="agenda" style="border-left-color: var(--color-accent);">
     
     <style>
         /* Card que agrupa vários dias */
@@ -540,7 +609,7 @@
             border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            border-left: 5px solid var(--color-primary);
+            border-left: 5px solid var(--color-accent);
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
@@ -576,8 +645,8 @@
         }
 
         .date-badge {
-            background: var(--color-primary);
-            color: white;
+            background: var(--color-accent);
+            color: var(--color-dark);
             font-weight: bold;
             font-size: 0.75rem;
             padding: 4px 8px;
@@ -613,12 +682,12 @@
     </style>
 
     <div class="block-header">
-        <h2 class="block-title">📅 Agenda & Avisos </h2>
+        <h2 class="block-title" style="color: var(--color-dark);">📅 Agenda & Avisos </h2>
         <p class="block-subtitle">Fique por dentro da programação especial do mês de Fevereiro</p>
     </div>
 
     <div class="agenda-group-card">
-        <div class="group-title">
+        <div class="group-title" style="color: var(--color-dark)">
             🎒 Semana de Volta às Aulas
         </div>
         
@@ -655,14 +724,10 @@
                 </div>
             </div>
         </div>
-        
-        <div style="margin-top: 1rem; text-align: right;">
-            <a href="#" style="font-size: 0.85rem; color: var(--color-primary); font-weight: bold; text-decoration: none;">Ver detalhes completos →</a>
-        </div>
     </div>
 
     <div class="agenda-group-card carnival-card">
-        <div class="group-title" style="color: var(--color-secondary);">
+        <div class="group-title" style="color: var(--color-dark);">
             🎭 Funcionamento: Carnaval
         </div>
 
@@ -693,9 +758,9 @@
     </div>
 </section>
 
-        <section class="content-block" id="aconteceu" style="border-left-color: var(--color-secondary);">
+        <section class="content-block" id="aconteceu" style="border-left-color: var(--color-third);">
     <div class="block-header">
-        <h2 class="block-title" style="color: var(--color-secondary);">✨ O Que Rolou</h2>
+        <h2 class="block-title" style="color: var(--color-third);">✨ O Que Rolou</h2>
         <p class="block-subtitle">Confira os destaques de 2025!</p>
     </div>
 
@@ -736,9 +801,9 @@
     </div>
 </section>
 
-        <section class="content-block" id="biblioteca">
+        <section class="content-block" id="biblioteca" style="border-left-color: var(--color-quarter);">
     <div class="block-header">
-        <h2 class="block-title">📚 Dica da Biblioteca</h2>
+        <h2 class="block-title" style="color: var(--color-quarter);">📚 Dica da Biblioteca</h2>
         <p class="block-subtitle">Leitura obrigatória para entender a Era das Máquinas</p>
     </div>
 
@@ -764,7 +829,7 @@
             </p>
             
             <div class="cta-wrapper" style="justify-content: flex-start; gap: 15px;">
-                <a href="https://www.editorasenacsp.com.br/livro/habilidades-futuro-trabalho-era-inteligencia-artificial" target="_blank" class="btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">
+                <a href="https://www.editorasenacsp.com.br/livro/habilidades-futuro-trabalho-era-inteligencia-artificial" target="_blank" class="btn-primary" style="background: var(--color-quarter); padding: 10px 24px; font-size: 0.9rem;">
                     📖 Ver na Livraria Senac
                 </a>
                 <span style="font-size: 0.8rem; color: #666; align-self: center;">Disponível também na biblioteca da unidade</span>
